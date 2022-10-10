@@ -1,0 +1,489 @@
+------------------------------------------------------------
+Villages and 2022 population of municipal AARHUS
+------------------------------------------------------------
+Aarhus 285273
+Beder 0 
+Beder-Malling 9045
+Borum 300
+Elev 1665
+Harlev 3990
+Hårup 857
+Hjortshøj 3590
+Jegstrup 0 
+Lisbjerg 1063
+Løgten 8659
+Lystrup 10273
+Malling 0 
+Mårslet 5004
+Mejlby 409
+Mundelstrup 412
+Ormslev 353
+Sabro 3330
+Solbjerg 4240
+Spørring 1052
+Stavtrup 0 
+Studstrup 827
+Todbjerg 0 
+Tranbjerg 0 
+Trige 3191
+------------------------------------------------------------
+Villages and 2022 population of municipal FAVRSKOV
+------------------------------------------------------------
+Aidt 289
+Farre 307
+Folby 1201
+Grundfør 414
+Hadbjerg 719
+Hadsten 8254
+Hammel 6854
+Hinnerup 8164
+Houlbjerg 208
+Hvorslev 211
+Lading 851
+Laurbjerg 946
+Lyngå 0
+Norring 0 
+Nørre Galten 210
+Ødum 336
+Sall 226
+Selling 646
+Skjød 255
+Søften 3072
+Svenstrup 269
+Thorsø 1751
+Ulstrup 1973
+Vellev 0
+Vissing 214
+Vitten 218
+Voldby 445
+Voldum 900
+------------------------------------------------------------
+Villages and 2022 population of municipal HEDENSTED
+------------------------------------------------------------
+Åle 536
+Barrit 791
+Bjerre 481
+Daugård 1111
+Glud 690
+Hedensted 12220
+Hornborg 235
+Hornsyld 1634
+Hosby 204
+Juelsminde 4053
+Korning 413
+Kragelund 0 
+Lindved 1351
+Overby 0 
+Ølholm 898
+Ølsted 873
+Øster Snede 1187
+Rårup 423
+Rask Mølle 1128
+Snaptun 492
+Stenderup 404
+Stouby 856
+Tørring 2945
+Uldum 1377
+------------------------------------------------------------
+Villages and 2022 population of municipal HERNING
+------------------------------------------------------------
+Arnborg 643 
+Aulum 3249
+Fasterholt 357
+Feldborg 549
+Gullestrup 1983
+Haderup 637
+Havnstrup 0 
+Herning 50565
+Hodsager 402
+Høgild 286
+Ilskov 728
+Kibæk 2667
+Kølkær 551
+Lind 0 
+Nørre Kollund 0 
+Ørnhøj 738
+Simmelkær 279
+Sinding 240
+Skarrild 292
+Skibbild 718
+Sønder Felding 1435
+Sørvad 1120
+Stakroge 231
+Studsgård 433
+Sunds 4239
+Timring 711
+Vildbjerg 4029
+Vind 207
+------------------------------------------------------------
+Villages and 2022 population of municipal HOLSTEBRO
+------------------------------------------------------------
+Borbjerg 457
+Bur 229
+Ejsing 323
+Handbjerg 226
+Herrup 266
+Holstebro 36489
+Hvam Mejeriby 236
+Idom 394 
+Krunderup 410
+Mejrup Kirkeby 0 
+Mogenstrup 205
+Nørre Felding 739
+Ryde 211
+Sevel 496
+Skave 496
+Sønder Nissum 0 
+Staby 0 
+Thorsminde 314
+Tvis 1317
+Ulfborg 1989
+Vemb 1276
+Vinderup 3077
+------------------------------------------------------------
+Villages and 2022 population of municipal HORSENS
+------------------------------------------------------------
+Brædstrup 3992
+Egebjerg 2969
+Gedved 2336
+Grædstrup 220
+Grumstrup 245
+Haldrup 330
+Hatting 1823
+Horsens 61074
+Hovedgård 2253
+Lund 2901
+Nim 741
+Østbirk 2413
+Sejet 361
+Sønder Vissing 431
+Søvind 1062
+Træden 0 
+Tvingstrup 575
+Vestbirk 0 
+Voervadsbro 215
+Yding 216 
+------------------------------------------------------------
+Villages and 2022 population of municipal IKAST
+------------------------------------------------------------
+Blåhøj 355
+Bording 2389
+Brande 7449
+Ejstrupholm 1696
+Engesvang 2060
+Gludsted 306
+Hampen 345 
+Ikast 15979
+Isenvad 719
+Klovborg 514
+Nørre Snede 1932
+Pårup 229
+Tulstrup 622 
+Uhre 273
+------------------------------------------------------------
+Villages and 2022 population of municipal LEMVIG
+------------------------------------------------------------
+Bækmarksbro 518
+Bonnet 0 
+Bøvlingbjerg 479
+Gudum 0 
+Harboøre 1414
+Klinkby 452
+Lemvig 6816
+Lomborg 333
+Nørre Nissum 981
+Ramme 407 
+Thyborøn 1890
+------------------------------------------------------------
+Villages and 2022 population of municipal NORDDJURS
+------------------------------------------------------------
+Allingåbro 1801
+Ålsrode 204
+Auning 3061
+Balle 40
+Bønnerup Strand 733
+Fjellerup 398
+Fjellerup Strand 0 
+Gjerrild 436
+Gjesing 311
+Glesborg 583
+Grenaa 14176
+Holbæk 229
+Lyngby 321
+Nørager 309
+Ørsted 1397
+Ørum 709
+Øster Alling 307
+Ramten 221
+Stenvad 255
+Trustrup 809
+Vivild 788
+Voldby 332
+------------------------------------------------------------
+Villages and 2022 population of municipal ODDER
+------------------------------------------------------------
+Bovlstrup 296
+Gylling 624
+Hov 1641
+Hundslund 544
+Neder Randlev 220
+Odder 12454
+Ørting 660
+Saksild 841
+Torrild 223 
+------------------------------------------------------------
+Villages and 2022 population of municipal RANDERS
+------------------------------------------------------------
+Albæk 274
+Ålum 276
+Asferg 662
+Assentoft 3811
+Dalbyover 261
+Enslev 0 
+Fårup 1024
+Gassum 414
+Gimming 227
+Gjerlev 623
+Hald 377
+Harridslev 1221
+Haslund 816
+Havndal 850
+Helstrup 0 
+Hørning 299
+Langå 2811
+Lem 212
+Linde 201
+Mejlby 617
+Mellerup 525
+Over Hornbæk 0 
+Øster Bjerregrav 1034
+Øster Tørslev 861
+Paderup 0 
+Randers 62802
+Råsted 319
+Sønderbæk 0 
+Spentrup 2351
+Stevnstrup 2545
+Støvring 0 
+Tånum 223
+Tvede 201
+Udbyhøj Vasehuse 0 
+Uggelhuse 419
+Værum 285
+------------------------------------------------------------
+Villages and 2022 population of municipal RINGKOEBING
+------------------------------------------------------------
+Ådum 235
+Astrup 273
+Barde 0 
+Borris 860
+Bølling 0 
+Fjelstervang 435
+Grønbjerg 358
+Hee 495
+Hemmet 334
+Herborg 274
+Hoven 219
+Højmark 274
+Hvide Sande 2874
+Kloster 606
+Lem 1296
+Lønborg 249
+Lyne 250
+No 251
+Nørre Bork 0 
+Ølstrup 301
+Rækker Mølle 352
+Ringkøbing 9894
+Skjern 7862
+Sønder Vium 0 
+Spjald 1351
+Stauning 364
+Tarm 4010
+Tim 857
+Troldhede 647
+Velling 259
+Videbæk 4242
+Vorgod 0 
+Vorgod-Barde 1011
+------------------------------------------------------------
+Villages and 2022 population of municipal SAMSOE
+------------------------------------------------------------
+Brundby 0 
+Nordby 220
+Onsbjerg 243
+Tranebjerg 839
+------------------------------------------------------------
+Villages and 2022 population of municipal SILKEBORG
+------------------------------------------------------------
+Ans 1912
+Bryrup 1527
+Demstrup 265
+Fårvang 1349
+Funder Kirkeby 596
+Gjern 1398
+Gjessø 817
+Grauballe 790
+Kjellerup 5064
+Kragelund 759
+Laven 392
+Lemming 294
+Levring 0 
+Linå 556
+Neder Hvam 285
+Nørre Knudstrup 218
+Nørskovlund 0 
+Øster Bording 210
+Resenbro 0 
+Salten 660
+Sejling 354
+Sejs-Svejbæk 4581
+Serup 0 
+Silkeborg 49747
+Sinding 305
+Sjørslev 361
+Skægkær 446
+Sorring 1155
+Svejbæk 0 
+Them 2376
+Thorning 990
+Vinderslev 456
+Virklund 3609
+Voel 1672
+Vrads 0 
+------------------------------------------------------------
+Villages and 2022 population of municipal SKANDERBORG
+------------------------------------------------------------
+Alken 230
+Blegind 249
+Fruering 251
+Galten 9004
+Gammel Rye 1570
+Hårby 243 
+Herskind 881
+Hørning 8395
+Hylke 413
+Javngyde 0 
+Låsby 1989
+Nørre Vissing 0
+Ry 7151
+Sjelle 304
+Skanderborg 19963
+Skjørring 289
+Skovby 0 
+Stilling 0 
+Stjær 1060
+Storring 257
+Tebstrup 652
+Virring 1093
+Voerladegård 559
+------------------------------------------------------------
+Villages and 2022 population of municipal SKIVE
+------------------------------------------------------------
+Balling 1185
+Breum 814
+Durup 903
+Glyngøre 1395
+Hald 408
+Hem 580
+Højslev 0 
+Højslev Stationsby 2833
+Hvidbjerg 338
+Jebjerg 1101
+Lem 486
+Lihme 271
+Nederby 553
+Oddense 583
+Ramsing 333 
+Roslev 1247
+Rødding 878
+Rønbjerg 333
+Selde 270
+Skive 20190
+------------------------------------------------------------
+Villages and 2022 population of municipal STRUER
+------------------------------------------------------------
+Asp 358
+Bremdal 1693
+Hjerm 1098
+Humlum 797
+Hvidbjerg 1069
+Jegind 0 
+Linde 379
+Resenstad 298
+Struer 10129
+Uglev 229
+Vejrumstad 0 
+------------------------------------------------------------
+Villages and 2022 population of municipal SYDDJURS
+------------------------------------------------------------
+Dråby 0 
+Ebeltoft 7204
+Egsmark 212
+Feldballe 505
+Følle 0 
+Grønfeld 215
+Hornslet 6171
+Hyllested 0 
+Knebel 603
+Kolind 1907 
+Lime 391
+Mørke 1698
+Nimtofte 594
+Pindstrup 743
+Rodskov 474
+Rønde 3191
+Ryomgård 2498
+Søby 243
+Thorsager 1309
+Tirstrup 475
+Tved 229
+Ugelbølle 1489
+Vrinners 389
+------------------------------------------------------------
+Villages and 2022 population of municipal VIBORG
+------------------------------------------------------------
+Birgittelyst 597
+Bjerregrav 473
+Bjerringbro 7437
+Bruunshåb 801 
+Finderup 0 
+Fly 284
+Frederiks 1843 
+Grønhøj 0 
+Hald Ege 0 
+Hammershøj 922
+Hjarbæk 256
+Hvam Stationsby 289
+Karup 2189
+Kjeldbjerg 277 
+Klejtrup 901
+Knudby 204
+Kølvrå 737
+Kvorning 0 
+Låstrup 0 
+Løgstrup 1939
+Løvel 832
+Mammen 296
+Møldrup 1296
+Mønsted 733
+Ørum 1420
+Ravnstrup 442
+Rindsholm 258
+Rødding 1016
+Rødkærsbro 1697
+Sahl 326
+Sjørup 256
+Skals 1759
+Skelhøje 485
+Sønder Rind 289
+Sparkær 628
+Stoholm 2533
+Tange 297
+Tapdrup 591
+Ulbjerg 470
+Vammen 544
+Vejrumbro 385
+Viborg 41239
+Vinkel 203
+Vridsted 579
