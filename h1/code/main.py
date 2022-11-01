@@ -85,13 +85,14 @@ for p in range(5, 11):
 # print(max_ds)
 
 # Unweighted distance
-sols, max_ds, max_wds = [], [], []
-for p in range(5, 11):
-    print(p)
-    no_weights = np.array([1] * len(weights))
-    sol, max_d, max_wd = p_center_prob_w(points, p, no_weights)
-    sols.append(sol)
-    max_ds.append(max_d)
-    max_wds.append(max_wd)
-
-print(max_ds)
+for _ in range(10):
+    sols, max_ds, max_wds = [], [], []
+    for p in range(5, 11):
+        print(p, end=" ")
+        no_weights = np.array([1] * len(weights))
+        sol, max_d, max_wd = p_center_prob_w(points, p, no_weights)
+        sols.append(sol)
+        max_ds.append(max_d)
+        max_wds.append(max_wd)
+    print()
+    print(max_ds)

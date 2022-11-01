@@ -119,9 +119,20 @@ def center_of_3(points, weights):
 def one_center_prob_w(points, weights):
     # Step 1
     n = 2
-    i1, i2 = np.random.choice(np.arange(len(points)), 2, replace=False)
-    Y1, Y2, w1, w2 = points[i1], points[i2], weights[i1], weights[i2]
-    # Y1, Y2, w1, w2 = points[0], points[1], weights[0], weights[1]  # Used for testing code
+    if np.all(weights == 1):  # Unweighted case
+        w1, w2 = 1, 1
+        Y1, Y2 = None, None
+        largest_dist = 0
+        for i, point1 in enumerate(points[:-1]):
+            for point2 in points[i+1:]:
+                dist = np.linalg.norm(point1 - point2)
+                if dist > largest_dist:
+                    largest_dist = dist
+                    Y1, Y2 = point1, point2
+
+    else:
+        i1, i2 = np.random.choice(np.arange(len(points)), 2, replace=False)
+        Y1, Y2, w1, w2 = points[i1], points[i2], weights[i1], weights[i2]
 
     if w1 > w2:
         w1, w2 = w2, w1
@@ -172,7 +183,6 @@ def one_center_prob_w(points, weights):
             i_furthest = np.argmax(w_dists_to_center)
             Y4, w4 = points[i_furthest], weights[i_furthest]
             RX = w_dists_to_center[i_furthest]
-            print(RX)
             if RX - RbX < ZERO:
                 return X
 
@@ -217,8 +227,10 @@ def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_las
     it = 0
     # Initial locations randomly in convex hull
     if init_X is None:
-        kmeans = KMeans(p).fit(points)
-        X = kmeans.cluster_centers_
+        # kmeans = KMeans(p).fit(points)
+        # X = kmeans.cluster_centers_
+        IDXS = np.random.choice(np.arange(len(points)), p, replace=False)
+        X = points[IDXS]
     else:
         X = init_X
 
