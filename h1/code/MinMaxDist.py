@@ -80,21 +80,21 @@ def center_of_3(points, weights):
             X = X2
 
     else:  # Find intersection of two circles
+        for_sort = [(w1, Y1), (w2, Y2), (w3, Y3)]
+        (w1, Y1), (w2, Y2), (w3, Y3) = sorted(for_sort)
         # Circle of equal weighted distance to Y2 and Y3
-        if w3 > w2:
-            r23 = w2 / w3
-            C23 = (Y3 - r23 ** 2 * Y2) / (1 - r23 ** 2)
-        else:
-            r23 = w3 / w2
-            C23 = (Y2 - r23 ** 2 * Y3) / (1 - r23 ** 2)
+        r23 = w2 / w3
+        C23 = (Y3 - r23 ** 2 * Y2) / (1 - r23 ** 2)
         rho23 = (np.linalg.norm(Y2 - Y3) * r23) / (1 - r23 ** 2)
 
         # Circle of equal weighted distance to Y1 and Y2
-        r12 = w1 / w2  # Already have w1 < w2 ensured from earlier
+        r12 = w1 / w2
         C12 = (Y2 - r12 ** 2 * Y1) / (1 - r12 ** 2)
         rho12 = (np.linalg.norm(Y1 - Y2) * r12) / (1 - r12 ** 2)
         d = np.linalg.norm(C12 - C23)
-        K = 1/4 * sqrt(((rho12 + rho23)**2 - d**2) * (d**2-(rho12 - rho23)**2))
+        temp = ((rho12 + rho23)**2 - d**2) * (d**2 - (rho12 - rho23)**2)
+        # print(Y1, Y2, Y3, w1, w2, w3, rho12, rho23, C12, C23, d)
+        K = 1/4 * sqrt(temp)
 
         x1_plus = 1/2 * (C12[0] + C23[0]) + 1/2 * (C23[0] - C12[0])/(d**2) * (rho12**2 - rho23**2) + 2*(C23[1]-C12[1]) * K/(d**2)
         x2_minus = 1/2 * (C12[1] + C23[1]) + 1/2 * (C23[1] - C12[1])/(d**2) * (rho12**2 - rho23**2) - 2*(C23[0]-C12[0]) * K/(d**2)
@@ -117,6 +117,8 @@ def center_of_3(points, weights):
 
 
 def one_center_prob_w(points, weights):
+    if len(points) == 1:
+        return points[0]
     # Step 1
     n = 2
     if np.all(weights == 1):  # Unweighted case
@@ -166,7 +168,7 @@ def one_center_prob_w(points, weights):
                     wdist12 = np.linalg.norm(X - point1) * weight1
                     wdist3 = np.linalg.norm(X - point3) * weight3
 
-                    if wdist3 - wdist12 < ZERO:  # Circle contains all 4 points
+                    if wdist3 - wdist12 < ZERO:
                         n = 2
                         Y1, Y2 = point1, point2
                         w1, w2 = weight1, weight2
@@ -258,7 +260,7 @@ def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_las
             plt.plot(*X.T, "go")
             plt.show()
 
-        # Solving single Weber
+        # Solving one-center
         new_X = [None for _ in range(p)]
         max_d = 0
         max_wd = 0

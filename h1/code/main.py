@@ -59,12 +59,33 @@ y = [R * (ly_i - ly[0]) * np.pi / 180 for ly_i in ly[1:]]
 points = np.array(list(zip(x, y)))
 weights = np.array(populations)
 
-sols, objs, max_ds = [], [], []
-for p in range(5, 11):
-    obj, sol, max_d = cooper(points, p, weights)
-    sols.append(sol)
-    objs.append(obj)
-    max_ds.append(max_d)
+# print("Cooper")
+# best_ds = [np.inf] * 6
+# best_wds = [np.inf] * 6
+# best_dsols = None
+# best_wdsols = None
+# for _ in range(10):
+#     print(_, end=" ")
+#     sols, max_wds, max_ds = [], [], []
+#     for p in range(5, 11):
+#         max_wd, sol, max_d = cooper(points, p, weights)
+#         sols.append(sol)
+#         max_wds.append(max_wd)
+#         max_ds.append(max_d)
+
+#         if max_d < best_ds[p-5]:
+#             best_ds[p-5] = max_d
+#             # best_dsols[p-5] = sol
+                    
+#         if max_wd < best_wds[p-5]:
+#             best_wds[p-5] = max_wd
+#             # best_wdsols[p-5] = sol
+# print()
+# print("Min max distance", best_ds)
+# # print(best_dsols)
+# print("Min max weighted distance", best_wds)
+# # print(best_wdsols)
+
 
 # for obj, sol, max_d, p in zip(objs, sols, max_ds, range(5, 11)):
 #     print("Solution with {} facilities:".format(p))
@@ -74,25 +95,58 @@ for p in range(5, 11):
     # cooper(points, p, weights, print_last=True, init_X=sol)
 
 # Weighted distance
-# sols, max_ds, max_wds = [], [], []
-# for p in range(5, 11):
-#     print(p)
-#     sol, max_d, max_wd = p_center_prob_w(points, p, weights)
-#     sols.append(sol)
-#     max_ds.append(max_d)
-#     max_wds.append(max_wd)
-#
-# print(max_ds)
-
-# Unweighted distance
-for _ in range(10):
+print("P-center: Weighted")
+best_ds = [np.inf] * 6
+best_wds = [np.inf] * 6
+best_dsols = None
+best_wdsols = None
+for _ in range(1):
+    print(_, end=" ")
     sols, max_ds, max_wds = [], [], []
     for p in range(5, 11):
-        print(p, end=" ")
+        sol, max_d, max_wd = p_center_prob_w(points, p, weights)
+        sols.append(sol)
+        max_ds.append(max_d)
+        max_wds.append(max_wd)
+
+        if max_d < best_ds[p-5]:
+            best_ds[p-5] = max_d
+            # best_dsols[p-5] = sol
+                    
+        if max_wd < best_wds[p-5]:
+            best_wds[p-5] = max_wd
+            # best_wdsols[p-5] = sol
+print()
+print("Min max distance", best_ds)
+# print(best_dsols)
+print("Min max weighted distance", best_wds)
+# print(best_wdsols)
+
+# Unweighted distance
+print("P-center: Unweighted")
+best_ds = [np.inf] * 6
+best_wds = [np.inf] * 6
+best_dsols = None
+best_wdsols = None
+for _ in range(50):
+    print(_, end=" ")
+    sols, max_ds, max_wds = [], [], []
+    for p in range(5, 11):
         no_weights = np.array([1] * len(weights))
         sol, max_d, max_wd = p_center_prob_w(points, p, no_weights)
         sols.append(sol)
         max_ds.append(max_d)
-        max_wds.append(max_wd)
-    print()
-    print(max_ds)
+        max_wds.append(max_wd)  # Wrong - no weights
+
+        if max_d < best_ds[p-5]:
+            best_ds[p-5] = max_d
+            # best_dsols[p-5] = sol
+        
+        if max_wd < best_wds[p-5]:
+            best_wds[p-5] = max_wd
+            # best_wdsols[p-5] = sol
+print()
+print("Min max distance", best_ds)
+# print(best_dsols)
+print("Min max weighted distance", best_wds)
+# print(best_wdsols)
