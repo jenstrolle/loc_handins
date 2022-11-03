@@ -93,11 +93,6 @@ def center_of_3(points, weights):
         rho12 = (np.linalg.norm(Y1 - Y2) * r12) / (1 - r12 ** 2)
         d = np.linalg.norm(C12 - C23)
         temp = ((rho12 + rho23)**2 - d**2) * (d**2 - (rho12 - rho23)**2)
-        if temp < 0:
-            X = (w2 * Y2 + w3 * Y3) / (w2 + w3)
-            print(np.linalg.norm(X-Y1) * w1)
-            print(np.linalg.norm(X-Y2) * w2)
-        # print(Y1, Y2, Y3, w1, w2, w3, rho12, rho23, C12, C23, d)
         K = 1/4 * sqrt(temp)
 
         x1_plus = 1/2 * (C12[0] + C23[0]) + 1/2 * (C23[0] - C12[0])/(d**2) * (rho12**2 - rho23**2) + 2*(C23[1]-C12[1]) * K/(d**2)
