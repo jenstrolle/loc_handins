@@ -100,7 +100,7 @@ best_ds = [np.inf] * 6
 best_wds = [np.inf] * 6
 best_dsols = None
 best_wdsols = None
-for _ in range(1):
+for _ in range(50):
     print(_, end=" ")
     sols, max_ds, max_wds = [], [], []
     for p in range(5, 11):
@@ -132,8 +132,7 @@ for _ in range(50):
     print(_, end=" ")
     sols, max_ds, max_wds = [], [], []
     for p in range(5, 11):
-        no_weights = np.array([1] * len(weights))
-        sol, max_d, max_wd = p_center_prob_w(points, p, no_weights)
+        sol, max_d, max_wd = p_center_prob_w(points, p, weights, unweighted=True)
         sols.append(sol)
         max_ds.append(max_d)
         max_wds.append(max_wd)  # Wrong - no weights

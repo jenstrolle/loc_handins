@@ -5,7 +5,7 @@ from math import sqrt
 from sklearn.cluster import KMeans
 import sympy
 
-ZERO = 0.0001
+ZERO = 0.001
 
 
 def center_of_3(points, weights):
@@ -93,6 +93,10 @@ def center_of_3(points, weights):
         rho12 = (np.linalg.norm(Y1 - Y2) * r12) / (1 - r12 ** 2)
         d = np.linalg.norm(C12 - C23)
         temp = ((rho12 + rho23)**2 - d**2) * (d**2 - (rho12 - rho23)**2)
+        if temp < 0:
+            X = (w2 * Y2 + w3 * Y3) / (w2 + w3)
+            print(np.linalg.norm(X-Y1) * w1)
+            print(np.linalg.norm(X-Y2) * w2)
         # print(Y1, Y2, Y3, w1, w2, w3, rho12, rho23, C12, C23, d)
         K = 1/4 * sqrt(temp)
 
@@ -142,7 +146,7 @@ def one_center_prob_w(points, weights):
 
     X = (w1 * Y1 + w2 * Y2) / (w1 + w2)
     RbX = np.linalg.norm(Y1 - X) * w1
-
+    iteratiion = 0
     while True:
         if n == 2:
             # Step 2
@@ -190,9 +194,12 @@ def one_center_prob_w(points, weights):
 
             # Step 5
             combinations = [(Y1, Y4), (Y2, Y4), (Y3, Y4), (Y1, Y2, Y4), (Y1, Y3, Y4), (Y2, Y3, Y4)]
+            point_names_comb = [(1, 4), (2, 4), (3, 4), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
             not_in_combs = [(Y2, Y3), (Y1, Y3), (Y1, Y2), Y3, Y2, Y1]
+            point_names_ncomb = [(2, 3), (1, 3), (1, 2), 3, 2, 1]
             weight_combs = [(w1, w4), (w2, w4), (w3, w4), (w1, w2, w4), (w1, w3, w4), (w2, w3, w4)]
             not_in_w_combs = [(w2, w3), (w1, w3), (w1, w2), w3, w2, w1]
+            infeasible_combs = []
 
             for i in range(len(combinations)):
                 if len(combinations[i]) == 2:
@@ -204,13 +211,24 @@ def one_center_prob_w(points, weights):
                     wdist12 = np.linalg.norm(X - point1) * weight1
                     wdist3 = np.linalg.norm(X - point3) * weight3
                     wdist4 = np.linalg.norm(X - point4) * weight4
-                    if wdist3 - wdist12 < ZERO and wdist4 - wdist12 < ZERO:  # Circle contains all 4 points
+                    useful = (wdist3 - wdist12 < ZERO) * 2 + (wdist4 - wdist12 < ZERO)
+                    if useful == 3:  # Circle contains all 4 points
                         n = 2
                         Y1, Y2 = point1, point2
                         w1, w2 = weight1, weight2
                         break
+                    elif useful == 2:
+                        unsorted_tup = (*point_names_comb[i], point_names_ncomb[i][0])
+                        sorted_tup = tuple(sorted(unsorted_tup))
+                        infeasible_combs.append(sorted_tup)
+                    elif useful == 1:
+                        unsorted_tup = ((*point_names_comb[i], point_names_ncomb[i][1]))
+                        sorted_tup = tuple(sorted(unsorted_tup))
+                        infeasible_combs.append(sorted_tup)
 
                 else:  # len(combinations[i] == 3:
+                    if point_names_comb[i] in infeasible_combs:
+                        continue
                     X = center_of_3(combinations[i], weight_combs[i])
                     wdist_circ = np.linalg.norm(combinations[i][0] - X) * weight_combs[i][0]
                     wdist_last = np.linalg.norm(not_in_combs[i] - X) * not_in_w_combs[i]
@@ -223,7 +241,7 @@ def one_center_prob_w(points, weights):
             RbX = np.linalg.norm(Y1 - X) * w1
 
 
-def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_last=False):
+def p_center_prob_w(points, p, weights, unweighted=False, init_X=None, print_plot=False, print_last=False):
     assert len(points) > p, "Number of facilities exceeds the number of points"
     colors = ["red", "blue", "yellow", "pink", "brown", "grey", "cyan", "purple", "orange", "black"]
     it = 0
@@ -266,7 +284,11 @@ def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_las
         max_wd = 0
         for i in range(p):
             if len(points_split[i]) > 0:  # If cluster has no points move facility to a random new location
-                location = one_center_prob_w(points_split[i], weights_split[i])
+                if unweighted:
+                    no_weights = np.array([1] * len(points_split[i]))
+                    location = one_center_prob_w(points_split[i], no_weights)
+                else:
+                    location = one_center_prob_w(points_split[i], weights_split[i])
                 new_X[i] = location
                 d = np.max(np.linalg.norm(location - points_split[i], axis=1))
                 wd = np.max(np.linalg.norm(location - points_split[i], axis=1) * weights_split[i])
