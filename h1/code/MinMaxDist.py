@@ -5,7 +5,7 @@ from math import sqrt
 from sklearn.cluster import KMeans
 import sympy
 
-ZERO = 0.0001
+ZERO = 0.001
 
 
 def center_of_3(points, weights):
@@ -80,21 +80,20 @@ def center_of_3(points, weights):
             X = X2
 
     else:  # Find intersection of two circles
+        for_sort = [(w1, Y1), (w2, Y2), (w3, Y3)]
+        (w1, Y1), (w2, Y2), (w3, Y3) = sorted(for_sort)
         # Circle of equal weighted distance to Y2 and Y3
-        if w3 > w2:
-            r23 = w2 / w3
-            C23 = (Y3 - r23 ** 2 * Y2) / (1 - r23 ** 2)
-        else:
-            r23 = w3 / w2
-            C23 = (Y2 - r23 ** 2 * Y3) / (1 - r23 ** 2)
+        r23 = w2 / w3
+        C23 = (Y3 - r23 ** 2 * Y2) / (1 - r23 ** 2)
         rho23 = (np.linalg.norm(Y2 - Y3) * r23) / (1 - r23 ** 2)
 
         # Circle of equal weighted distance to Y1 and Y2
-        r12 = w1 / w2  # Already have w1 < w2 ensured from earlier
+        r12 = w1 / w2
         C12 = (Y2 - r12 ** 2 * Y1) / (1 - r12 ** 2)
         rho12 = (np.linalg.norm(Y1 - Y2) * r12) / (1 - r12 ** 2)
         d = np.linalg.norm(C12 - C23)
-        K = 1/4 * sqrt(((rho12 + rho23)**2 - d**2) * (d**2-(rho12 - rho23)**2))
+        temp = ((rho12 + rho23)**2 - d**2) * (d**2 - (rho12 - rho23)**2)
+        K = 1/4 * sqrt(temp)
 
         x1_plus = 1/2 * (C12[0] + C23[0]) + 1/2 * (C23[0] - C12[0])/(d**2) * (rho12**2 - rho23**2) + 2*(C23[1]-C12[1]) * K/(d**2)
         x2_minus = 1/2 * (C12[1] + C23[1]) + 1/2 * (C23[1] - C12[1])/(d**2) * (rho12**2 - rho23**2) - 2*(C23[0]-C12[0]) * K/(d**2)
@@ -117,11 +116,24 @@ def center_of_3(points, weights):
 
 
 def one_center_prob_w(points, weights):
+    if len(points) == 1:
+        return points[0]
     # Step 1
     n = 2
-    i1, i2 = np.random.choice(np.arange(len(points)), 2, replace=False)
-    Y1, Y2, w1, w2 = points[i1], points[i2], weights[i1], weights[i2]
-    # Y1, Y2, w1, w2 = points[0], points[1], weights[0], weights[1]  # Used for testing code
+    if np.all(weights == 1):  # Unweighted case
+        w1, w2 = 1, 1
+        Y1, Y2 = None, None
+        largest_dist = 0
+        for i, point1 in enumerate(points[:-1]):
+            for point2 in points[i+1:]:
+                dist = np.linalg.norm(point1 - point2)
+                if dist > largest_dist:
+                    largest_dist = dist
+                    Y1, Y2 = point1, point2
+
+    else:
+        i1, i2 = np.random.choice(np.arange(len(points)), 2, replace=False)
+        Y1, Y2, w1, w2 = points[i1], points[i2], weights[i1], weights[i2]
 
     if w1 > w2:
         w1, w2 = w2, w1
@@ -129,7 +141,7 @@ def one_center_prob_w(points, weights):
 
     X = (w1 * Y1 + w2 * Y2) / (w1 + w2)
     RbX = np.linalg.norm(Y1 - X) * w1
-
+    iteratiion = 0
     while True:
         if n == 2:
             # Step 2
@@ -155,7 +167,7 @@ def one_center_prob_w(points, weights):
                     wdist12 = np.linalg.norm(X - point1) * weight1
                     wdist3 = np.linalg.norm(X - point3) * weight3
 
-                    if wdist3 - wdist12 < ZERO:  # Circle contains all 4 points
+                    if wdist3 - wdist12 < ZERO:
                         n = 2
                         Y1, Y2 = point1, point2
                         w1, w2 = weight1, weight2
@@ -172,15 +184,17 @@ def one_center_prob_w(points, weights):
             i_furthest = np.argmax(w_dists_to_center)
             Y4, w4 = points[i_furthest], weights[i_furthest]
             RX = w_dists_to_center[i_furthest]
-            print(RX)
             if RX - RbX < ZERO:
                 return X
 
             # Step 5
             combinations = [(Y1, Y4), (Y2, Y4), (Y3, Y4), (Y1, Y2, Y4), (Y1, Y3, Y4), (Y2, Y3, Y4)]
+            point_names_comb = [(1, 4), (2, 4), (3, 4), (1, 2, 4), (1, 3, 4), (2, 3, 4)]
             not_in_combs = [(Y2, Y3), (Y1, Y3), (Y1, Y2), Y3, Y2, Y1]
+            point_names_ncomb = [(2, 3), (1, 3), (1, 2), 3, 2, 1]
             weight_combs = [(w1, w4), (w2, w4), (w3, w4), (w1, w2, w4), (w1, w3, w4), (w2, w3, w4)]
             not_in_w_combs = [(w2, w3), (w1, w3), (w1, w2), w3, w2, w1]
+            infeasible_combs = []
 
             for i in range(len(combinations)):
                 if len(combinations[i]) == 2:
@@ -192,13 +206,24 @@ def one_center_prob_w(points, weights):
                     wdist12 = np.linalg.norm(X - point1) * weight1
                     wdist3 = np.linalg.norm(X - point3) * weight3
                     wdist4 = np.linalg.norm(X - point4) * weight4
-                    if wdist3 - wdist12 < ZERO and wdist4 - wdist12 < ZERO:  # Circle contains all 4 points
+                    useful = (wdist3 - wdist12 < ZERO) * 2 + (wdist4 - wdist12 < ZERO)
+                    if useful == 3:  # Circle contains all 4 points
                         n = 2
                         Y1, Y2 = point1, point2
                         w1, w2 = weight1, weight2
                         break
+                    elif useful == 2:
+                        unsorted_tup = (*point_names_comb[i], point_names_ncomb[i][0])
+                        sorted_tup = tuple(sorted(unsorted_tup))
+                        infeasible_combs.append(sorted_tup)
+                    elif useful == 1:
+                        unsorted_tup = ((*point_names_comb[i], point_names_ncomb[i][1]))
+                        sorted_tup = tuple(sorted(unsorted_tup))
+                        infeasible_combs.append(sorted_tup)
 
                 else:  # len(combinations[i] == 3:
+                    if point_names_comb[i] in infeasible_combs:
+                        continue
                     X = center_of_3(combinations[i], weight_combs[i])
                     wdist_circ = np.linalg.norm(combinations[i][0] - X) * weight_combs[i][0]
                     wdist_last = np.linalg.norm(not_in_combs[i] - X) * not_in_w_combs[i]
@@ -211,14 +236,16 @@ def one_center_prob_w(points, weights):
             RbX = np.linalg.norm(Y1 - X) * w1
 
 
-def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_last=False):
+def p_center_prob_w(points, p, weights, unweighted=False, init_X=None, print_plot=False, print_last=False):
     assert len(points) > p, "Number of facilities exceeds the number of points"
     colors = ["red", "blue", "yellow", "pink", "brown", "grey", "cyan", "purple", "orange", "black"]
     it = 0
     # Initial locations randomly in convex hull
     if init_X is None:
-        kmeans = KMeans(p).fit(points)
-        X = kmeans.cluster_centers_
+        # kmeans = KMeans(p).fit(points)
+        # X = kmeans.cluster_centers_
+        IDXS = np.random.choice(np.arange(len(points)), p, replace=False)
+        X = points[IDXS]
     else:
         X = init_X
 
@@ -246,13 +273,17 @@ def p_center_prob_w(points, p, weights, init_X=None, print_plot=False, print_las
             plt.plot(*X.T, "go")
             plt.show()
 
-        # Solving single Weber
+        # Solving one-center
         new_X = [None for _ in range(p)]
         max_d = 0
         max_wd = 0
         for i in range(p):
             if len(points_split[i]) > 0:  # If cluster has no points move facility to a random new location
-                location = one_center_prob_w(points_split[i], weights_split[i])
+                if unweighted:
+                    no_weights = np.array([1] * len(points_split[i]))
+                    location = one_center_prob_w(points_split[i], no_weights)
+                else:
+                    location = one_center_prob_w(points_split[i], weights_split[i])
                 new_X[i] = location
                 d = np.max(np.linalg.norm(location - points_split[i], axis=1))
                 wd = np.max(np.linalg.norm(location - points_split[i], axis=1) * weights_split[i])
