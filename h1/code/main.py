@@ -70,7 +70,7 @@ def euc_to_lon_lat(point, origin):
 points = np.array(list(zip(x, y)))
 weights = np.array(populations)
 
-runs_of_each = 50
+runs_of_each = 1
 
 print("Cooper")
 max_ds_cooper = [np.inf] * 6
@@ -159,28 +159,28 @@ p = 5
 for sol in cooper_lon_lats:
     cooper_map = folium.Map((56.302139, 9.502777), zoom_start=9)  # Create map
     for location in locations:  # Add cities to map
-        folium.Marker(location).add_to(cooper_map)
+        folium.CircleMarker(location, radius=1).add_to(cooper_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(cooper_map)
-    cooper_map.save("../maps/cooper"+str(p)+".html")
+    cooper_map.save("../maps/newcooper"+str(p)+".html")
     p += 1
 
 p = 5
 for sol in pcw_lon_lats:
     pcw_map = folium.Map((56.302139, 9.502777), zoom_start=9)  # Create map
     for location in locations:  # Add cities to map
-        folium.Marker(location).add_to(pcw_map)
+        folium.CircleMarker(location, radius=1).add_to(pcw_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(pcw_map)
-    pcw_map.save("../maps/pcw"+str(p)+".html")
+    pcw_map.save("../maps/newpcw"+str(p)+".html")
     p += 1
 
 p = 5
 for sol in pc_lon_lats:
     pc_map = folium.Map((56.302139, 9.502777), zoom_start=9)  # Create map
     for location in locations:  # Add cities to map
-        folium.Marker(location).add_to(pc_map)
+        folium.CircleMarker(location, radius=1).add_to(pc_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(pc_map)
-    pc_map.save("../maps/pc"+str(p)+".html")
+    pc_map.save("../maps/newpc"+str(p)+".html")
     p += 1
