@@ -74,15 +74,15 @@ for p in range(5, 11):
     # cooper(points, p, weights, print_last=True, init_X=sol)
 
 # Weighted distance
-# sols, max_ds, max_wds = [], [], []
-# for p in range(5, 11):
-#     print(p)
-#     sol, max_d, max_wd = p_center_prob_w(points, p, weights)
-#     sols.append(sol)
-#     max_ds.append(max_d)
-#     max_wds.append(max_wd)
-#
-# print(max_ds)
+sols, max_ds, max_wds = [], [], []
+for p in range(5, 11):
+    print(p)
+    sol, max_d, max_wd = p_center_prob_w(points, p, weights)
+    sols.append(sol)
+    max_ds.append(max_d)
+    max_wds.append(max_wd)
+
+print(max_ds)
 
 # Unweighted distance
 sols, max_ds, max_wds = [], [], []
