@@ -4,7 +4,6 @@ from Cooper import cooper
 import numpy as np
 from MinMaxDist import p_center_prob_w
 import folium
-import webbrowser
 
 
 geolocator = Nominatim(user_agent="LocationPlanning", timeout=5)
@@ -70,7 +69,7 @@ def euc_to_lon_lat(point, origin):
 points = np.array(list(zip(x, y)))
 weights = np.array(populations)
 
-runs_of_each = 1
+runs_of_each = 50
 
 print("Cooper")
 max_ds_cooper = [np.inf] * 6
@@ -155,6 +154,7 @@ for sol in best_dsols_pc:
     pc_lon_lats.append(np.array(sol_translated))
 
 
+# Make maps
 p = 5
 for sol in cooper_lon_lats:
     cooper_map = folium.Map((56.302139, 9.502777), zoom_start=9)  # Create map
@@ -162,7 +162,7 @@ for sol in cooper_lon_lats:
         folium.CircleMarker(location, radius=1).add_to(cooper_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(cooper_map)
-    cooper_map.save("../maps/newcooper"+str(p)+".html")
+    cooper_map.save("../maps/cooper"+str(p)+".html")
     p += 1
 
 p = 5
@@ -172,7 +172,7 @@ for sol in pcw_lon_lats:
         folium.CircleMarker(location, radius=1).add_to(pcw_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(pcw_map)
-    pcw_map.save("../maps/newpcw"+str(p)+".html")
+    pcw_map.save("../maps/pcw"+str(p)+".html")
     p += 1
 
 p = 5
@@ -182,5 +182,45 @@ for sol in pc_lon_lats:
         folium.CircleMarker(location, radius=1).add_to(pc_map)
     for point in sol:  # Add drone stations
         folium.Marker(list(point), icon=folium.Icon(icon="circle-dot", color="red")).add_to(pc_map)
-    pc_map.save("../maps/newpc"+str(p)+".html")
+    pc_map.save("../maps/pc"+str(p)+".html")
     p += 1
+
+# Make plots of key values
+fig, ax1 = plt.subplots()
+fig.set_size_inches(8, 5)
+ax2 = ax1.twinx()
+ax1.plot(range(5, 11), best_obj_cooper, color="red", label="Cooper objective")
+ax2.plot(range(5, 11), max_ds_cooper, color="blue", label="Cooper max distance")
+ax1.set_xlabel("Number of drone stations")
+ax1.set_ylabel("Objective value")
+ax2.set_ylabel("Max distance")
+ax1.legend(loc="lower left")
+ax2.legend(loc="upper right")
+fig.suptitle("Cooper")
+plt.savefig("../plots/cooper.png")
+
+fig, ax1 = plt.subplots()
+fig.set_size_inches(8, 5)
+ax2 = ax1.twinx()
+ax1.plot(range(5, 11), best_wds_pcw, color="red", label="Weighted p-center weighted distance")
+ax2.plot(range(5, 11), best_ds_pcw, color="blue", label="Weighted p-center max distance")
+ax1.set_xlabel("Number of drone stations")
+ax1.set_ylabel("Max weighted distance")
+ax2.set_ylabel("Max distance")
+ax1.legend(loc="lower left")
+ax2.legend(loc="upper right")
+fig.suptitle("P-center weighted")
+plt.savefig("../plots/pcw.png")
+
+fig, ax1 = plt.subplots()
+fig.set_size_inches(8, 5)
+ax2 = ax1.twinx()
+ax1.plot(range(5, 11), best_wds_pc, color="red", label="P-center weighted distance")
+ax2.plot(range(5, 11), best_ds_pc, color="blue", label="P-center max distance")
+ax1.set_xlabel("Number of drone stations")
+ax1.set_ylabel("Max weighted distance")
+ax2.set_ylabel("Max distance")
+ax1.legend(loc="lower left")
+ax2.legend(loc="upper right")
+fig.suptitle("P-center")
+plt.savefig("../plots/pc.png")
