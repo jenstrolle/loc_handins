@@ -1,0 +1,12 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Kjær-Sørensen
+    given-names: Nikolaj
+  - family-names: Trolle
+    given-names: Jens
+  - family-names: Askholm Nielsen
+    given-names: Maria
+title: "Location Planning: Handins"
+version: 1.0.0
+date-released: 07-11-2022
