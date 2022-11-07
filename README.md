@@ -9,7 +9,7 @@ The subfolder ```code``` contains all of the code, while ```maps``` contains the
 The file ```report.pdf``` is a written report detailing our findings.
 
 ## Code Structure
-Niller skriver noget klogt her
+The code is split into 4 files. ```main.py```, ```Cooper.py```, ```SingleWeber.py``` and ```MinMaxDist.py```. To run the code one should run the file ```main.py```, when then calls functions from the other three files. Data handling, plots and creation of maps are also found in this file. ```SingleWeber.py``` contains multiple methods for solving the single Weber problem, specifically the Ostresh method, which is called in ```Cooper.py``` to solve the Multi-Weber problem. The $p$-center problem is solved in the file ```MinMaxDist.py```, which can handle both the weighted case as well as the unweighted case by giving weights all equal to 1.
 
 ## Map Structure
 All the maps can be found in the subfolder ```maps```. Each map has all cities marked by small blue dots, while the placed drone stations are marked with a red marker. The maps are named as ```prefix + number of drone stations.html```, where the prefix can be ```pc``` for the unweighted $p$-center problem, ```pcw``` for the weighted p-center problem and finally ```cooper``` for the results of the Cooper heuristic. As an example, when trying to place 8 drone stations, the locations found by Cooper's allocation algorithm can be found in the file ```cooper8.html```.
