@@ -6,5 +6,13 @@ This repository is dedicated to the code and results from the exercises presente
 In the folder ```h1``` one can find everything pertaining to the first handin. This exercise is based on a problem from the Danish Ministry of Defense regarding placement of drone stations.
 The subfolder ```code``` contains all of the code, while ```maps``` contains the resulting maps from the solutions using the python module ```folium```. Finally ```plots``` contains some plots of the resulting key values from the best solutions we found.
 
+The file ```report.pdf``` is a written report detailing our findings.
+
+## Code Structure
+Niller skriver noget klogt her
+
+## Map Structure
+Niller skriver noget mere klogt her.
+
 
 This repository was created by Jens Trolle, Maria Askholm Nielsen and Nikolaj Kjær-Sørensen.
